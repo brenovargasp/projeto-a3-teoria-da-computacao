@@ -1,0 +1,193 @@
+body{
+background:#0f172a;
+color:white;
+font-family: 'Orbitron', sans-serif;
+text-align:center;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.arcade-img{
+width:60px;
+image-rendering: pixelated;
+filter: drop-shadow(0 0 8px #c074ff);
+}
+
+/* TÍTULO (MANTÉM ARCADE) */
+.titulo{
+font-family: 'Press Start 2P', cursive;
+font-size:18px;
+letter-spacing:2px;
+color:#c074ff;
+text-shadow:0 0 10px #a639ff;
+}
+
+/* SUBTÍTULOS (AGORA CLEAN) */
+.subtitulo{
+font-family: 'Orbitron', sans-serif;
+font-size:14px;
+color:#c084fc;
+background:rgba(192,132,252,0.08);
+padding:8px 16px;
+border-radius:10px;
+display:inline-block;
+margin-top:20px;
+border:1px solid rgba(192,132,252,0.2);
+box-shadow:0 0 6px rgba(192,132,252,0.2);
+}
+
+/* CONTAINER */
+.machine{
+background:#111827;
+padding:30px;
+width:420px;
+margin:auto;
+border-radius:15px;
+box-shadow:0 0 30px rgba(192,132,252,0.2);
+}
+
+/* BOTÕES */
+button{
+font-family: 'Orbitron', sans-serif;
+font-size:12px;
+font-weight:500;
+padding:10px;
+margin:10px;
+cursor:pointer;
+border-radius:10px;
+border:1px solid transparent;
+transition:0.2s;
+}
+
+/* DOCES */
+.doces button{
+background:#1f2937;
+border:2px solid #fbbf24;
+width:110px;
+color:white;
+}
+
+.doces button img{
+width:70px;
+display:block;
+margin:auto;
+image-rendering: pixelated;
+}
+
+.doces button span{
+display:block;
+margin-top:5px;
+font-size:12px;
+}
+
+.doces button:hover{
+transform:scale(1.05);
+}
+
+.doces button.selecionado{
+background:#fbbf24;
+color:black;
+transform:scale(1.08);
+box-shadow:0 0 20px #fbbf24;
+}
+
+/* MOEDAS */
+.money button{
+background:#1f2937;
+color:#38bdf8;
+border:1px solid #38bdf8;
+}
+
+.money button img{
+width:18px;
+margin-right:5px;
+vertical-align:middle;
+image-rendering: pixelated;
+}
+
+.money button.ativo{
+background:#38bdf8;
+color:black;
+}
+
+/* CRÉDITO */
+.credito{
+font-family: 'Orbitron', sans-serif;
+font-weight:600;
+font-size:14px;
+background:#020617;
+padding:12px;
+border-radius:12px;
+border:2px solid #00f5d4;
+margin-top:15px;
+color:#00f5d4;
+box-shadow:0 0 12px rgba(0,245,212,0.3);
+}
+
+/* BARRA */
+.barra{
+width:100%;
+height:10px;
+background:#020617;
+border-radius:10px;
+margin:15px 0;
+}
+
+#progresso{
+height:100%;
+width:0%;
+background:#00f5d4;
+transition:0.3s;
+}
+
+/* COMPRAR */
+#comprarBtn{
+background:#374151;
+color:#9ca3af;
+cursor:not-allowed;
+}
+
+#comprarBtn.ativo{
+background:#00f5d4;
+color:black;
+cursor:pointer;
+box-shadow:0 0 10px #00f5d4;
+}
+
+/* CANCELAR */
+.secundario{
+background:#374151;
+color:white;
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal-content{
+background:#111827;
+padding:20px;
+border-radius:10px;
+text-align:center;
+border:1px solid #c084fc;
+}
+
+.hidden{
+display:none;
+}
