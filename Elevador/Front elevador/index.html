@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Elevador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="elevator-container">
+        <div class="elevator-doors-wrapper">
+            <div id="door-left" class="door left open"></div>
+            <div id="door-right" class="door right open"></div>
+            <div class="elevator-background">Interior do Elevador</div>
+        </div>
+
+        <div class="control-panel">
+            <div class="display">
+                Andar: <span id="floor-display">T</span>
+            </div>
+            <div class="buttons-container">
+                <button class="floor-btn" data-floor="3">3</button>
+                <button class="floor-btn" data-floor="2">2</button>
+                <button class="floor-btn" data-floor="1">1</button>
+                <button class="floor-btn" data-floor="T">T</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
