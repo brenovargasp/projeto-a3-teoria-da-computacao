@@ -1,33 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Elevador</title>
+    <title>Elevador Espacial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div class="space-layer stars-random-1"></div>
+    <div class="space-layer stars-random-2"></div>
+    <div class="space-layer stars-random-3"></div>
+    <div class="space-layer stars-fill"></div>
+    <div class="nebula"></div>
 
-    <div class="elevator-container">
-        <div class="elevator-doors-wrapper">
-            <div id="door-left" class="door left open"></div>
-            <div id="door-right" class="door right open"></div>
-            <div class="elevator-background">Interior do Elevador</div>
-        </div>
+    <main class="app-shell">
+        <section class="elevator-container">
+            <div class="elevator-doors-wrapper">
+                <div class="cabin-aura"></div>
+                <div class="cabin-stars"></div>
+                <div class="cabin-frame"></div>
 
-        <div class="control-panel">
-            <div class="display">
-                Andar: <span id="floor-display">T</span>
+                <img id="cat" src="img/quest.png" class="cat" alt="Gatinho astronauta">
+
+                <div id="door-left" class="door left open"></div>
+                <div id="door-right" class="door right open"></div>
             </div>
-            <div class="buttons-container">
-                <button class="floor-btn" data-floor="3">3</button>
-                <button class="floor-btn" data-floor="2">2</button>
-                <button class="floor-btn" data-floor="1">1</button>
-                <button class="floor-btn" data-floor="T">T</button>
-            </div>
-        </div>
-    </div>
+
+            <aside class="control-panel">
+                <div class="panel-orbs">
+                    <span class="orb orb-blue"></span>
+                    <span class="orb orb-pink"></span>
+                    <span class="orb orb-gold"></span>
+                </div>
+
+                <div class="display">
+                    <div class="display-glow"></div>
+
+                    <div class="display-top">
+                        <div class="status">
+                            <img src="img/icon.png" class="icon" alt="">
+                            <span>Mimi</span>
+                        </div>
+                    </div>
+
+                    <div class="display-main">
+                        <img id="direction-icon" class="direction-icon" alt="">
+                        <span id="floor-display">T</span>
+                    </div>
+
+                    <div class="display-sub">
+                        Módulo Estelar
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <button class="floor-btn floor-3" data-floor="3">
+                        <span class="btn-led"></span>
+                        <img src="img/paw.png" alt="">
+                        <span class="btn-text">3º andar</span>
+                    </button>
+
+                    <button class="floor-btn floor-2" data-floor="2">
+                        <span class="btn-led"></span>
+                        <img src="img/paw.png" alt="">
+                        <span class="btn-text">2º andar</span>
+                    </button>
+
+                    <button class="floor-btn floor-1" data-floor="1">
+                        <span class="btn-led"></span>
+                        <img src="img/paw.png" alt="">
+                        <span class="btn-text">1º andar</span>
+                    </button>
+
+                    <button class="floor-btn floor-t" data-floor="T">
+                        <span class="btn-led"></span>
+                        <img src="img/paw.png" alt="">
+                        <span class="btn-text">Térreo</span>
+                    </button>
+                </div>
+            </aside>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,99 +1,105 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Ordem exata dos andares
-    const floorMap = ['T', '1', '2', '3'];
-    let currentFloorIndex = 0; // Inicia no Térreo
+    const floorMap = ["T", "1", "2", "3"];
+
+    const catImages = {
+        T: "img/quest.png",
+        1: "img/andar1.png",
+        2: "img/andar2.png",
+        3: "img/andar3.png"
+    };
+
+    let currentFloorIndex = 0;
     let isMoving = false;
 
-    // Elementos do DOM
-    const displaySpan = document.getElementById('floor-display');
-    const doorLeft = document.getElementById('door-left');
-    const doorRight = document.getElementById('door-right');
-    const buttons = document.querySelectorAll('.floor-btn');
+    const displaySpan = document.getElementById("floor-display");
+    const directionIcon = document.getElementById("direction-icon");
+    const cat = document.getElementById("cat");
+    const doorLeft = document.getElementById("door-left");
+    const doorRight = document.getElementById("door-right");
+    const buttons = document.querySelectorAll(".floor-btn");
 
-    // Adiciona o evento de clique para todos os botões
-    buttons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const targetFloor = e.target.getAttribute('data-floor');
-            requestFloor(targetFloor, e.target);
+    buttons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const targetFloor = event.currentTarget.getAttribute("data-floor");
+            requestFloor(targetFloor, event.currentTarget);
         });
     });
 
-    /**
-     * Função principal que gerencia a sequência de eventos do elevador.
-     */
-    async function requestFloor(targetFloorString, btnElement) {
-        // Bloqueia se já estiver em movimento ou se chamou o andar atual
+    async function requestFloor(targetFloorString, buttonElement) {
         if (isMoving) return;
-        
+
         const targetIndex = floorMap.indexOf(targetFloorString);
         if (targetIndex === currentFloorIndex) return;
 
         isMoving = true;
-        setButtonsState(true); // Desativa botões
-        btnElement.classList.add('active'); // Acende o botão pressionado
+        setButtonsState(true);
+        buttonElement.classList.add("active");
 
-        // Passo 1: Fechar portas
+        const goingUp = currentFloorIndex < targetIndex;
+        directionIcon.src = goingUp ? "img/subindo.png" : "img/descendo.png";
+        directionIcon.style.display = "block";
+
         await closeDoors();
-
-        // Passo 2: Mover passando pelos andares intermediários
         await moveElevator(targetIndex);
-
-        // Passo 3: Abrir portas
         await openDoors();
 
-        // Limpa estados
-        btnElement.classList.remove('active');
+        directionIcon.removeAttribute("src");
+        directionIcon.style.display = "none";
+
+        buttonElement.classList.remove("active");
         setButtonsState(false);
         isMoving = false;
     }
 
-    // --- Funções de Controle de Estado ---
-
     function setButtonsState(disabled) {
-        buttons.forEach(btn => btn.disabled = disabled);
+        buttons.forEach((button) => {
+            button.disabled = disabled;
+        });
     }
 
     function closeDoors() {
-        return new Promise(resolve => {
-            doorLeft.classList.remove('open');
-            doorRight.classList.remove('open');
-            
-            // Aguarda o tempo da transição do CSS (1s) antes de resolver a promise
-            setTimeout(resolve, 1000); 
+        return new Promise((resolve) => {
+            doorLeft.classList.remove("open");
+            doorRight.classList.remove("open");
+            setTimeout(resolve, 1000);
         });
     }
 
     function openDoors() {
-        return new Promise(resolve => {
-            doorLeft.classList.add('open');
-            doorRight.classList.add('open');
+        return new Promise((resolve) => {
+            doorLeft.classList.add("open");
+            doorRight.classList.add("open");
             setTimeout(resolve, 1000);
         });
     }
 
     function moveElevator(targetIndex) {
-        return new Promise(resolve => {
-            // Determina a direção (1 para subir, -1 para descer)
+        return new Promise((resolve) => {
             const step = currentFloorIndex < targetIndex ? 1 : -1;
-            
-            function stepFloor() {
+
+            function changeFloor() {
                 if (currentFloorIndex !== targetIndex) {
-                    // Atualiza o índice interno
                     currentFloorIndex += step;
-                    
-                    // Atualiza o display visualmente
-                    displaySpan.innerText = floorMap[currentFloorIndex];
-                    
-                    // Aguarda 1.5 segundos em cada andar antes de ir para o próximo
-                    setTimeout(stepFloor, 1500); 
+
+                    const currentFloor = floorMap[currentFloorIndex];
+                    displaySpan.innerText = currentFloor;
+
+                    cat.style.transform = "scale(0.92)";
+                    cat.style.opacity = "0";
+
+                    setTimeout(() => {
+                        cat.src = catImages[currentFloor];
+                        cat.style.transform = "scale(1)";
+                        cat.style.opacity = "1";
+                    }, 180);
+
+                    setTimeout(changeFloor, 1100);
                 } else {
-                    // Chegou ao destino
                     resolve();
                 }
             }
 
-            // Inicia o movimento após um pequeno atraso de 500ms
-            setTimeout(stepFloor, 500);
+            setTimeout(changeFloor, 450);
         });
     }
 });
